@@ -74,6 +74,9 @@ export const StyledRegister = styled.div`
     background-size: cover;
     height: 50%;
     width: 50%;
+    border: 1px solid lightgray;
+    border-top:none;
+
     /* border: 1px solid navy; */
     /* border-radius: 1.5em; */
     form {
@@ -88,22 +91,27 @@ export const StyledRegister = styled.div`
       margin-bottom: 1em;
       background-color: white;
       margin-left: 25vw;
-      border: 1px solid navy;
-       input {
-           padding:0.7em;
-       }
+      border: 1px solid lightgray;
+      input {
+        padding: 0.7em;
+        border: 1px solid lightgray;
+      }
       button {
         background-color: navy;
         color: white;
         padding: 0.8em;
         width: 13vw;
         border: none;
-        cursor:pointer;
+        cursor: pointer;
         :hover {
           background-color: #4cb9e4;
           color: white;
         }
       }
     }
+  
   }
+  p {
+        text-align:center;
+    }
 `;

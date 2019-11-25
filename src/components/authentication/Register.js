@@ -7,6 +7,7 @@ import "react-notifications-component/dist/theme.css";
 import "animate.css";
 import { StyledRegister } from "../../styles";
 import logo from "../../imgs/logo.png";
+import { NavLink } from "react-router-dom";
 
 export const Register = props => {
   console.log("props from Login", props);
@@ -110,6 +111,10 @@ export const Register = props => {
           )}
         </Formik>
       </div>
+      <p>
+        <span>or <br/></span>
+        <NavLink to="/login">Sign in</NavLink>
+      </p>
     </StyledRegister>
   );
 };

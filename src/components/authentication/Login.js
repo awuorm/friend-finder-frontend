@@ -5,6 +5,11 @@ import { Formik } from "formik";
 import { store } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import "animate.css";
+import { StyledRegister } from "../../styles";
+import logo from "../../imgs/logo.png";
+import { NavLink } from "react-router-dom";
+
+
 
 
 export const Login = props => {
@@ -12,8 +17,11 @@ export const Login = props => {
   const {userDetails,} = props;
 
   return (
-    <div>
-      
+    <StyledRegister>
+       <figure>
+        <img alt="logo" src={logo} />
+      </figure>
+      <div>
       <Formik
         initialValues={userDetails}
         validate={userDetails => {
@@ -104,7 +112,12 @@ export const Login = props => {
           </form>
         )}
       </Formik>
-    </div>
+      </div>
+      <p>
+        <span>or <br/></span>
+        <NavLink to="/login">Sign in</NavLink>
+      </p>
+    </StyledRegister>
   );
 };
 
