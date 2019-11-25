@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import "./App.css";
 import { connect } from "react-redux";
 import * as actionCreators from "./state/actionCreators";
-import { Route } from "react-router-dom";
+import { Route, NavLink } from "react-router-dom";
 import Register from "./components/authentication/Register";
 import ReactNotification from "react-notifications-component";
 import Login from "./components/authentication/Login";
 import { Dashboard } from "./components/Dashboard";
 import PrivateRoute from "./utils/PrivateRoute";
+import { StyledApp } from "./styles";
+// import friends_logo from "../src/imgs/friends_logo.jpg";
+import LandingPage from "./components/LandingPage";
+
 
 export function App(props) {
   console.log(props);
@@ -16,9 +20,21 @@ export function App(props) {
     password: ""
   });
   return (
-    <div className="App">
+    <StyledApp>
+      
       <ReactNotification />
-      Hello from app!
+     
+      <Route
+        exact
+        path="/"
+        render={props => (
+          <LandingPage
+            {...props}
+            
+          />
+        )}
+      />
+     
       <Route
         exact
         path="/register"
@@ -42,7 +58,7 @@ export function App(props) {
         )}
       />
       <PrivateRoute path="/dashboard" component={Dashboard} />
-    </div>
+    </StyledApp>
   );
 }
 
