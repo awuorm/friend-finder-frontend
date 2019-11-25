@@ -8,9 +8,11 @@ import { combineReducers, createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import * as reducers from "./state/reducers";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const monsterReducer = combineReducers({
-    registration: reducers.RegisterReducer,
+  registration: reducers.RegisterReducer,
+  login: reducers.loginReducer
 });
 
 const store = createStore(
@@ -21,7 +23,9 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </Provider>,
   document.getElementById("root")
 );
