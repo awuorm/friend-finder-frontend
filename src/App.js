@@ -6,12 +6,12 @@ import { Route, NavLink } from "react-router-dom";
 import Register from "./components/authentication/Register";
 import ReactNotification from "react-notifications-component";
 import Login from "./components/authentication/Login";
-import { Dashboard } from "./components/Dashboard";
+import Dashboard from "./components/Dashboard";
 import PrivateRoute from "./utils/PrivateRoute";
 import { StyledApp } from "./styles";
 // import friends_logo from "../src/imgs/friends_logo.jpg";
 import LandingPage from "./components/LandingPage";
-
+import Matches from "./components/Matches";
 
 export function App(props) {
   console.log(props);
@@ -21,20 +21,10 @@ export function App(props) {
   });
   return (
     <StyledApp>
-      
       <ReactNotification />
-     
-      <Route
-        exact
-        path="/"
-        render={props => (
-          <LandingPage
-            {...props}
-            
-          />
-        )}
-      />
-     
+
+      <Route exact path="/" render={props => <LandingPage {...props} />} />
+
       <Route
         exact
         path="/register"
@@ -58,6 +48,7 @@ export function App(props) {
         )}
       />
       <PrivateRoute path="/dashboard" component={Dashboard} />
+      <PrivateRoute path="/matches" component={Matches} />
     </StyledApp>
   );
 }

@@ -8,11 +8,12 @@ import { combineReducers, createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import * as reducers from "./state/reducers";
-import { BrowserRouter as Router,Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const monsterReducer = combineReducers({
   registration: reducers.RegisterReducer,
-  login: reducers.loginReducer
+  login: reducers.loginReducer,
+  questions: reducers.questionsReducer
 });
 
 const store = createStore(
