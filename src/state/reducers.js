@@ -1,5 +1,37 @@
 import * as types from "./actionTypes";
 
+const matchedTrue = {
+  trueMatch: [],
+  trueMatchError: {}
+}
+
+export const trueMatchReducers = (state = matchedTrue, action) => {
+  switch (action.type) {
+    case types.POST_MATCH:
+      return { ...state, trueMatch: action.payload };
+    case types.MATCHES_ERROR:
+      return { ...state, trueMatchError: action.payload };
+    default:
+      return state;
+  }
+};
+
+const initialMatches = {
+  matches: [],
+  matchesError: {}
+};
+
+export const matchesReducers = (state = initialMatches, action) => {
+  switch (action.type) {
+    case types.GET_MATCHES:
+      return { ...state, matches: action.payload };
+    case types.MATCHES_ERROR:
+      return { ...state, matchesError: action.payload };
+    default:
+      return state;
+  }
+};
+
 const initialQuestions = {
   qstns: [],
   qstnsError: {}

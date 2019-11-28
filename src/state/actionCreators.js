@@ -4,6 +4,44 @@ import { store } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
+export const postMatchError = (error) => {
+  return {type: types.POST_MATCH_ERROR, payload: error.message};
+}
+
+export const postMatch = (matchedUser) => dispatch => {
+  axiosWithAuth().put("https://friend-finder-backend.herokuapp.com/api/restricted/matches",matchedUser)
+  .then(res => {
+    console.log(res.data);
+    store.addNotification({
+      title: "You have been matched!",
+      message: res.data.success,
+      type: "success", // 'default', 'success', 'info', 'warning'
+      container: "top-right", // where to position the notifications
+      animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+      animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+      dismiss: {
+        duration: 3000
+      }
+    });
+    dispatch({type: types.POST_MATCH, payload: res.data});
+  })
+  .catch(error => {
+    store.addNotification({
+      title: "Something went terribly wrong",
+      message: error.message,
+      type: "danger", // 'default', 'success', 'info', 'warning'
+      container: "top-right", // where to position the notifications
+      animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+      animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+      dismiss: {
+        duration: 3000
+      }
+    });
+    console.log("error from post answers",error);
+    dispatch(postMatchError(error));
+  })
+}
+
 export const matchesError = error => {
   return {type: types.GET_MATCHES, payload: error.message};
 }
@@ -13,17 +51,17 @@ export const getMatches = () => dispatch => {
                  .then(res => {
                   dispatch({type: types.GET_MATCHES, payload:res.data});
                   console.log(res.data);
-                    store.addNotification({
-                      title: "Find your matches!",
-                      message: "just  a moment",
-                      type: "success", // 'default', 'success', 'info', 'warning'
-                      container: "top-right", // where to position the notifications
-                      animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
-                      animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
-                      dismiss: {
-                        duration: 3000
-                      }
-                    });
+                    // store.addNotification({
+                    //   title: "Find your matches!",
+                    //   message: "just  a moment",
+                    //   type: "success", // 'default', 'success', 'info', 'warning'
+                    //   container: "top-right", // where to position the notifications
+                    //   animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+                    //   animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+                    //   dismiss: {
+                    //     duration: 3000
+                    //   }
+                    // });
                  }) 
                  .catch(error => {
                   dispatch(matchesError(error));
@@ -166,7 +204,7 @@ export const postLogin = (userDetails, props) => dispatch => {
         }
       });
       dispatch({ type: types.POST_LOGIN, payload: res.data });
-      props.history.push("/dashboard");
+      props.history.push("/dash/questions");
       window.localStorage.setItem("token", res.data.token);
     })
     .catch(error => {

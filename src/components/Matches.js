@@ -1,10 +1,48 @@
-import React from "react";
-import {connect} from "react-redux";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import * as actionCreators from "../state/actionCreators";
+import { StyledMatches } from "../styles";
+import tick_icon_2 from "../imgs/tick_icon_2.png";
 
 export const Matches = props => {
-    console.log("props from matches",props);
-  return <div>Hello from Matches!</div>;
+  console.log("props from matches", props);
+  const { matched, getMatches } = props;
+  useEffect(() => {
+    getMatches();
+  }, [getMatches, matched.matches]);
+  console.log(matched);
+
+  const submitMatch = (match,e) => {
+      e.preventDefault();
+      let matchedToTrue = {
+          id: match.id,
+          loggedin: match.loggedin,
+          potentialmatches: match.potentialmatches,
+          matched: true,
+          probability: match.probability,
+      }
+      props.postMatch(matchedToTrue);
+
+
+  }
+  return (
+    <StyledMatches>
+     <h5>The possibilities are endless!</h5>
+     <h6>Here are the people you matched with</h6> 
+      {matched.matches.map(match => {
+        return (
+          <div key={match.id}>
+            <h5>Name: {match.potentialmatchesname}</h5>
+            <h6>Match probability: {(match.probability / 12) * 100}</h6>
+            <button onClick={(e) => submitMatch(match, e)}>
+              <img alt="tick icon" src={tick_icon_2} />
+              <p>Match</p>
+            </button>
+          </div>
+        );
+      })}
+    </StyledMatches>
+  );
 };
 
-export default connect(state => state,actionCreators)(Matches);
+export default connect(state => state, actionCreators)(Matches);

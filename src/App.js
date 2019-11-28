@@ -12,6 +12,7 @@ import { StyledApp } from "./styles";
 // import friends_logo from "../src/imgs/friends_logo.jpg";
 import LandingPage from "./components/LandingPage";
 import Matches from "./components/Matches";
+import  Dash  from "./components/Dash";
 
 export function App(props) {
   console.log(props);
@@ -47,8 +48,9 @@ export function App(props) {
           />
         )}
       />
-      <PrivateRoute path="/dashboard" component={Dashboard} />
-      <PrivateRoute path="/matches" component={Matches} />
+      <PrivateRoute path="/dash" component={Dash}/>
+      <PrivateRoute exact path="/dash/questions" component={Dashboard} />
+      <PrivateRoute exact path="/dash/matches" component={Matches} />
     </StyledApp>
   );
 }
