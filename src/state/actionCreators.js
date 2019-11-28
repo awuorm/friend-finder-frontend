@@ -4,120 +4,162 @@ import { store } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
-export const postMatchError = (error) => {
-  return {type: types.POST_MATCH_ERROR, payload: error.message};
-}
+export const trueMatchesErrror = error => {
+  return { type: types.GET_TRUE_MATCH_ERROR, payload: error.message };
+};
 
-export const postMatch = (matchedUser) => dispatch => {
-  axiosWithAuth().put("https://friend-finder-backend.herokuapp.com/api/restricted/matches",matchedUser)
-  .then(res => {
-    console.log(res.data);
-    store.addNotification({
-      title: "You have been matched!",
-      message: res.data.success,
-      type: "success", // 'default', 'success', 'info', 'warning'
-      container: "top-right", // where to position the notifications
-      animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
-      animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
-      dismiss: {
-        duration: 3000
-      }
+export const getTrueMatches = () => dispatch => {
+  axiosWithAuth()
+    .get("http://localhost:4000/api/restricted/matches/true")
+    .then(res => {
+      dispatch({ type: types.GET_TRUE_MATCH, payload: res.data });
+      console.log(res.data);
+      // store.addNotification({
+      //   title: "Find your matches!",
+      //   message: "just  a moment",
+      //   type: "success", // 'default', 'success', 'info', 'warning'
+      //   container: "top-right", // where to position the notifications
+      //   animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+      //   animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+      //   dismiss: {
+      //     duration: 3000
+      //   }
+      // });
+    })
+    .catch(error => {
+      dispatch(matchesError(error));
+      store.addNotification({
+        title: "Something went terribly wrong",
+        message: error.message,
+        type: "danger", // 'default', 'success', 'info', 'warning'
+        container: "top-right", // where to position the notifications
+        animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+        animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+        dismiss: {
+          duration: 3000
+        }
+      });
+      console.log("error from matches", error);
     });
-    dispatch({type: types.POST_MATCH, payload: res.data});
-  })
-  .catch(error => {
-    store.addNotification({
-      title: "Something went terribly wrong",
-      message: error.message,
-      type: "danger", // 'default', 'success', 'info', 'warning'
-      container: "top-right", // where to position the notifications
-      animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
-      animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
-      dismiss: {
-        duration: 3000
-      }
+};
+
+export const postMatchError = error => {
+  return { type: types.POST_MATCH_ERROR, payload: error.message };
+};
+
+export const postMatch = matchedUser => dispatch => {
+  axiosWithAuth()
+    .post("http://localhost:4000/api/restricted/matches", matchedUser)
+    .then(res => {
+      console.log(res.data);
+      store.addNotification({
+        title: "You have been matched!",
+        message: res.data.success,
+        type: "success", // 'default', 'success', 'info', 'warning'
+        container: "top-right", // where to position the notifications
+        animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+        animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+        dismiss: {
+          duration: 3000
+        }
+      });
+      dispatch({ type: types.POST_MATCH, payload: res.data });
+    })
+    .catch(error => {
+      store.addNotification({
+        title: "Something went terribly wrong",
+        message: error.message,
+        type: "danger", // 'default', 'success', 'info', 'warning'
+        container: "top-right", // where to position the notifications
+        animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+        animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+        dismiss: {
+          duration: 3000
+        }
+      });
+      console.log("error from post answers", error);
+      dispatch(postMatchError(error));
     });
-    console.log("error from post answers",error);
-    dispatch(postMatchError(error));
-  })
-}
+};
 
 export const matchesError = error => {
-  return {type: types.GET_MATCHES, payload: error.message};
-}
+  return { type: types.MATCHES_ERROR, payload: error.message };
+};
 
 export const getMatches = () => dispatch => {
-  axiosWithAuth().get("https://friend-finder-backend.herokuapp.com/api/restricted/matches")
-                 .then(res => {
-                  dispatch({type: types.GET_MATCHES, payload:res.data});
-                  console.log(res.data);
-                    // store.addNotification({
-                    //   title: "Find your matches!",
-                    //   message: "just  a moment",
-                    //   type: "success", // 'default', 'success', 'info', 'warning'
-                    //   container: "top-right", // where to position the notifications
-                    //   animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
-                    //   animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
-                    //   dismiss: {
-                    //     duration: 3000
-                    //   }
-                    // });
-                 }) 
-                 .catch(error => {
-                  dispatch(matchesError(error));
-                  store.addNotification({
-                    title: "Something went terribly wrong",
-                    message: error.message,
-                    type: "danger", // 'default', 'success', 'info', 'warning'
-                    container: "top-right", // where to position the notifications
-                    animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
-                    animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
-                    dismiss: {
-                      duration: 3000
-                    }
-                  });
-                  console.log("error from matches",error);
-                 })
-}
+  axiosWithAuth()
+    .get("http://localhost:4000/api/restricted/matches")
+    .then(res => {
+      dispatch({ type: types.GET_MATCHES, payload: res.data });
+      console.log(res.data);
+      // store.addNotification({
+      //   title: "Find your matches!",
+      //   message: "just  a moment",
+      //   type: "success", // 'default', 'success', 'info', 'warning'
+      //   container: "top-right", // where to position the notifications
+      //   animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+      //   animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+      //   dismiss: {
+      //     duration: 3000
+      //   }
+      // });
+    })
+    .catch(error => {
+      dispatch(matchesError(error));
+      store.addNotification({
+        title: "Something went terribly wrong",
+        message: error.message,
+        type: "danger", // 'default', 'success', 'info', 'warning'
+        container: "top-right", // where to position the notifications
+        animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+        animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+        dismiss: {
+          duration: 3000
+        }
+      });
+      console.log("error from matches", error);
+    });
+};
 
 export const answersError = error => {
-  return {type: types.ANSWERS_ERROR, payload: error.message};
-}
+  return { type: types.ANSWERS_ERROR, payload: error.message };
+};
 
-export const answersPost = (answers,props) => dispatch => {
-  axiosWithAuth().post("https://friend-finder-backend.herokuapp.com/api/restricted/answers",answers)
-                  .then(res => {
-                    console.log(res.data);
-                    store.addNotification({
-                      title: "Answers have been recorded!",
-                      message: res.data.success,
-                      type: "success", // 'default', 'success', 'info', 'warning'
-                      container: "top-right", // where to position the notifications
-                      animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
-                      animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
-                      dismiss: {
-                        duration: 3000
-                      }
-                    });
-                    dispatch({type: types.POST_ANSWERS, payload: res.data});
-                    props.history.push("/matches");
-                  })
-                  .catch(error => {
-                    store.addNotification({
-                      title: "Something went terribly wrong",
-                      message: error.message,
-                      type: "danger", // 'default', 'success', 'info', 'warning'
-                      container: "top-right", // where to position the notifications
-                      animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
-                      animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
-                      dismiss: {
-                        duration: 3000
-                      }
-                    });
-                    console.log("error from post answers",error);
-                    dispatch(answersError(error));
-                  })
-}
+export const answersPost = (answers, props) => dispatch => {
+  axiosWithAuth()
+    .post("http://localhost:4000/api/restricted/answers", answers)
+    .then(res => {
+      console.log(res.data);
+      store.addNotification({
+        title: "Answers have been recorded!",
+        message: res.data.success,
+        type: "success", // 'default', 'success', 'info', 'warning'
+        container: "top-right", // where to position the notifications
+        animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+        animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+        dismiss: {
+          duration: 3000
+        }
+      });
+      dispatch({ type: types.POST_ANSWERS, payload: res.data });
+      props.history.push("/dash/matches");
+    })
+    .catch(error => {
+      store.addNotification({
+        title: "Something went terribly wrong",
+        message: error.message,
+        type: "danger", // 'default', 'success', 'info', 'warning'
+        container: "top-right", // where to position the notifications
+        animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+        animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+        dismiss: {
+          duration: 3000
+        }
+      });
+      console.log("error from post answers", error);
+      dispatch(answersError(error));
+    });
+};
 
 export const questionsError = error => {
   return { type: types.QUESTIONS_ERROR, payload: error.message };
@@ -125,9 +167,9 @@ export const questionsError = error => {
 
 export const getQuestions = () => dispatch => {
   axiosWithAuth()
-    .get("https://friend-finder-backend.herokuapp.com/api/restricted/questions")
+    .get("http://localhost:4000/api/restricted/questions")
     .then(res => {
-        // console.log("questions from server",res.data);
+      // console.log("questions from server",res.data);
       dispatch({ type: types.GET_QUESTIONS, payload: res.data });
     })
     .catch(error => {
@@ -142,10 +184,7 @@ export const registrationError = error => {
 export const postRegister = (userDetails, props) => dispatch => {
   console.log("props from register", userDetails, props);
   axios
-    .post(
-      "https://friend-finder-backend.herokuapp.com/api/auth/register",
-      userDetails
-    )
+    .post("http://localhost:4000/api/auth/register", userDetails)
     .then(res => {
       store.addNotification({
         title: "Registration successful!",
@@ -186,10 +225,7 @@ export const loginError = error => {
 export const postLogin = (userDetails, props) => dispatch => {
   console.log("props from register", userDetails, props);
   axios
-    .post(
-      "https://friend-finder-backend.herokuapp.com/api/auth/login",
-      userDetails
-    )
+    .post("http://localhost:4000/api/auth/login", userDetails)
     .then(res => {
       console.log(res);
       store.addNotification({

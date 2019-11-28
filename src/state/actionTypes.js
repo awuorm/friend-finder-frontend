@@ -10,3 +10,5 @@ export const GET_MATCHES = "GET_MATCHES";
 export const MATCHES_ERROR = "MATCHES_ERROR";
 export const POST_MATCH = "POST_MATCH";
 export const POST_MATCH_ERROR = "POST_MATCH_ERROR";
+export const GET_TRUE_MATCH = "GET_TRUE_MATCH";
+export const GET_TRUE_MATCH_ERROR = "GET_TRUE_MATCH_ERROR";

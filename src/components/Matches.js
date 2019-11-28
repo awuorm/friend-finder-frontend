@@ -18,7 +18,7 @@ export const Matches = props => {
           id: match.id,
           loggedin: match.loggedin,
           potentialmatches: match.potentialmatches,
-          matched: true,
+          matched: 1,
           probability: match.probability,
       }
       props.postMatch(matchedToTrue);
@@ -29,11 +29,12 @@ export const Matches = props => {
     <StyledMatches>
      <h5>The possibilities are endless!</h5>
      <h6>Here are the people you matched with</h6> 
-      {matched.matches.map(match => {
+     {matched.matches.length === 0 ? <div>You do not have any matches</div> :
+      matched.matches.map(match => {
         return (
           <div key={match.id}>
             <h5>Name: {match.potentialmatchesname}</h5>
-            <h6>Match probability: {(match.probability / 12) * 100}</h6>
+            <h6>Match probability: {Math.round((match.probability / 12) * 100)}</h6>
             <button onClick={(e) => submitMatch(match, e)}>
               <img alt="tick icon" src={tick_icon_2} />
               <p>Match</p>

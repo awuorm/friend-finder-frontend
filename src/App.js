@@ -13,6 +13,7 @@ import { StyledApp } from "./styles";
 import LandingPage from "./components/LandingPage";
 import Matches from "./components/Matches";
 import  Dash  from "./components/Dash";
+import  TrueMatch  from "./components/TrueMatch";
 
 export function App(props) {
   console.log(props);
@@ -51,7 +52,10 @@ export function App(props) {
       <PrivateRoute path="/dash" component={Dash}/>
       <PrivateRoute exact path="/dash/questions" component={Dashboard} />
       <PrivateRoute exact path="/dash/matches" component={Matches} />
+      <PrivateRoute exact path="/dash/your-matches" component={TrueMatch} />
+
     </StyledApp>
+
   );
 }
 

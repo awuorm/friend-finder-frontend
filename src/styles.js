@@ -28,8 +28,8 @@ export const StyledMatches = styled.div`
        margin-left: 20vw;
         background-color: #4cb9e4;
         color: white;
-        padding: 0.5em;
-        width: 13vw;
+        padding: 0.2em;
+        width: 11.5vw;
         border: none;
         cursor: pointer;
         display: flex;
@@ -45,7 +45,37 @@ export const StyledMatches = styled.div`
           color: white;
         }
   }
+  }
 `;
+
+export const StyledButtons = styled.div`
+    display: flex;
+    justify-content:space-around;
+    align-items:center;
+    button {
+       margin: 1em;
+       margin-left: 20vw;
+        background-color: #4cb9e4;
+        color: white;
+        padding: 0.2em;
+        width: 11.5vw;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 2vw;
+          height: 3vw;
+          padding-right: 0.5em;
+        }
+        :hover {
+          background-color: navy;
+          color: white;
+        }
+  }
+
+  `;
 
 export const StyledQuestions = styled.div`
   text-align: center;

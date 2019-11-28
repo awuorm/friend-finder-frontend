@@ -7,9 +7,9 @@ const matchedTrue = {
 
 export const trueMatchReducers = (state = matchedTrue, action) => {
   switch (action.type) {
-    case types.POST_MATCH:
+    case types.GET_TRUE_MATCH:
       return { ...state, trueMatch: action.payload };
-    case types.MATCHES_ERROR:
+    case types.GET_TRUE_MATCH_ERROR:
       return { ...state, trueMatchError: action.payload };
     default:
       return state;
