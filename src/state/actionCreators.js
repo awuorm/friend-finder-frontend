@@ -11,7 +11,7 @@ export const getMessagesError = error => {
 
 export const getMessages = () => dispatch => {
   axiosWithAuth()
-  .get("http://localhost:4000/api/restricted/msgs")
+  .get("https://friend-finder-backend.herokuapp.com/api/restricted/msgs")
   .then(res => {
     dispatch({type: types.GET_MESSAGES, payload: res.data});
     console.log(res.data);
@@ -39,7 +39,7 @@ export const postMessagesError = error => {
 
 export const postMessages = (msg) => dispatch => {
   axiosWithAuth()
-  .post("http://localhost:4000/api/restricted/msgs", msg)
+  .post("https://friend-finder-backend.herokuapp.com/api/restricted/msgs", msg)
   .then(res => {
     dispatch({type: types.POST_MESSAGES, payload: res.data});
     console.log(res.data);
@@ -67,7 +67,7 @@ export const trueMatchesErrror = error => {
 
 export const getTrueMatches = () => dispatch => {
   axiosWithAuth()
-    .get("http://localhost:4000/api/restricted/matches/true")
+    .get("https://friend-finder-backend.herokuapp.com/api/restricted/matches/true")
     .then(res => {
       dispatch({ type: types.GET_TRUE_MATCH, payload: res.data });
       console.log(res.data);
@@ -95,7 +95,7 @@ export const postMatchError = error => {
 
 export const postMatch = matchedUser => dispatch => {
   axiosWithAuth()
-    .post("http://localhost:4000/api/restricted/matches", matchedUser)
+    .post("https://friend-finder-backend.herokuapp.com/api/restricted/matches", matchedUser)
     .then(res => {
       console.log(res.data);
       store.addNotification({
@@ -134,7 +134,7 @@ export const matchesError = error => {
 
 export const getMatches = () => dispatch => {
   axiosWithAuth()
-    .get("http://localhost:4000/api/restricted/matches")
+    .get("https://friend-finder-backend.herokuapp.com/api/restricted/matches")
     .then(res => {
       dispatch({ type: types.GET_MATCHES, payload: res.data });
       console.log(res.data);
@@ -173,7 +173,7 @@ export const answersError = error => {
 
 export const answersPost = (answers, props) => dispatch => {
   axiosWithAuth()
-    .post("http://localhost:4000/api/restricted/answers", answers)
+    .post("https://friend-finder-backend.herokuapp.com/api/restricted/answers", answers)
     .then(res => {
       console.log(res.data);
       store.addNotification({
@@ -213,7 +213,7 @@ export const questionsError = error => {
 
 export const getQuestions = () => dispatch => {
   axiosWithAuth()
-    .get("http://localhost:4000/api/restricted/questions")
+    .get("https://friend-finder-backend.herokuapp.com/api/restricted/questions")
     .then(res => {
       // console.log("questions from server",res.data);
       dispatch({ type: types.GET_QUESTIONS, payload: res.data });
@@ -230,7 +230,7 @@ export const registrationError = error => {
 export const postRegister = (userDetails, props) => dispatch => {
   console.log("props from register", userDetails, props);
   axios
-    .post("http://localhost:4000/api/auth/register", userDetails)
+    .post("https://friend-finder-backend.herokuapp.com/api/auth/register", userDetails)
     .then(res => {
       store.addNotification({
         title: "Registration successful!",
@@ -271,7 +271,7 @@ export const loginError = error => {
 export const postLogin = (userDetails, props) => dispatch => {
   console.log("props from register", userDetails, props);
   axios
-    .post("http://localhost:4000/api/auth/login", userDetails)
+    .post("https://friend-finder-backend.herokuapp.com/api/auth/login", userDetails)
     .then(res => {
       console.log(res);
       store.addNotification({
