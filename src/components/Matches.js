@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../state/actionCreators";
-import { StyledMatches } from "../styles";
+import { StyledMatch } from "../styles";
 import tick_icon_2 from "../imgs/tick_icon_2.png";
 
 export const Matches = props => {
@@ -26,7 +26,7 @@ export const Matches = props => {
 
   }
   return (
-    <StyledMatches>
+    <StyledMatch>
      <h5>The possibilities are endless!</h5>
      <h6>Here are the people you matched with</h6> 
      {matched.matches.length === 0 ? <div>You do not have any matches</div> :
@@ -36,13 +36,13 @@ export const Matches = props => {
             <h5>Name: {match.potentialmatchesname}</h5>
             <h6>Match probability: {Math.round((match.probability / 12) * 100)}</h6>
             <button onClick={(e) => submitMatch(match, e)}>
-              <img alt="tick icon" src={tick_icon_2} />
-              <p>Match</p>
+              {/* <img alt="tick icon" src={tick_icon_2} /> */}
+              Match
             </button>
           </div>
         );
       })}
-    </StyledMatches>
+    </StyledMatch>
   );
 };
 

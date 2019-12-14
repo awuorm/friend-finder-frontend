@@ -2,6 +2,88 @@ import styled from "styled-components";
 import app_back from "./imgs/app_back.jpg";
 import form_back_6 from "./imgs/form_back_6.jpg";
 
+export const StyledMessages = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  h5 {
+    color: darkgray;
+  }
+
+  div {
+    background-color: aliceblue;
+    border: 1px solid lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-left: 25vw; */
+    width: 50vw;
+    margin: 1em;
+    flex-direction: column;
+    span {
+      color: coral;
+    }
+    p {
+      color: darkgray;
+    }
+    button {
+      border-radius: 0.5em;
+
+      background-color: coral;
+      border: none;
+      margin: 0.5em;
+      color: white;
+      padding: 0.7em;
+      border-radius: 0.5em;
+    }
+  }
+`;
+
+export const StyledMatch = styled.div`
+  text-align: center;
+  color: navy;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h5 {
+    margin: 0;
+    padding: 0.6em;
+  }
+  h6 {
+    margin: 0;
+    padding: 0.6em;
+  }
+  div {
+    background-color: aliceblue;
+    width: 50vw;
+    padding: 0.5em;
+    border: 1px solid lightgray;
+    margin-bottom: 0.8em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    button {
+      border-radius: 0.5em;
+      margin: 1em;
+      background-color: #4cb9e4;
+      color: white;
+      width: 7vw;
+      height: 5vh;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      :hover {
+        background-color: navy;
+        color: white;
+      }
+    }
+  }
+`;
+
 export const StyledMatches = styled.div`
   text-align: center;
   color: navy;
@@ -10,13 +92,13 @@ export const StyledMatches = styled.div`
   justify-content: center;
   align-items: center;
   h5 {
-    margin:0;
-    padding:0.6em;
+    margin: 0;
+    padding: 0.6em;
   }
-   h6 {
-    margin:0;
-    padding:0.6em;
-   }
+  h6 {
+    margin: 0;
+    padding: 0.6em;
+  }
   div {
     background-color: aliceblue;
     width: 50vw;
@@ -24,60 +106,63 @@ export const StyledMatches = styled.div`
     border: 1px solid lightgray;
     margin-bottom: 0.8em;
     div {
-    background-color: aliceblue;
-    width: 40vw;
-    border: none;
-    margin:0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+      background-color: aliceblue;
+      width: 40vw;
+      border: none;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       button {
-       margin: 1em;
-       margin-left: 5vw;
+        border-radius: 0.5em;
+        margin: 1em;
+        margin-left: 5vw;
         background-color: #4cb9e4;
         color: white;
         width: 7vw;
         height: 5vh;
         border: none;
         cursor: pointer;
+        display: flex;
+        justify-content: center;
         :hover {
           background-color: navy;
           color: white;
         }
-  }
+      }
     }
-    
   }
 `;
 
 export const StyledButtons = styled.div`
-    display: flex;
-    justify-content:space-around;
-    align-items:center;
-    button {
-       margin: 1em;
-       margin-left: 20vw;
-        background-color: #4cb9e4;
-        color: white;
-        padding: 0.2em;
-        width: 11.5vw;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        img {
-          width: 2vw;
-          height: 3vw;
-          padding-right: 0.5em;
-        }
-        :hover {
-          background-color: navy;
-          color: white;
-        }
-  }
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  button {
+    border-radius: 0.5em;
 
-  `;
+    margin: 1em;
+    margin-left: 20vw;
+    background-color: #4cb9e4;
+    color: white;
+    padding: 0.2em;
+    width: 11.5vw;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 2vw;
+      height: 3vw;
+      padding-right: 0.5em;
+    }
+    :hover {
+      background-color: navy;
+      color: white;
+    }
+  }
+`;
 
 export const StyledQuestions = styled.div`
   text-align: center;
@@ -95,25 +180,27 @@ export const StyledQuestions = styled.div`
     margin-left: 25vw;
     padding: 0.5em;
     border: 2px solid lightgray;
-     div {
-       margin: 0;
-       width:50vw;
-       border: none;
-       padding: 0;
-     }
-     button {
-       margin: 1em;
-        background-color: navy;
+    div {
+      margin: 0;
+      width: 50vw;
+      border: none;
+      padding: 0;
+    }
+    button {
+      border-radius: 0.5em;
+
+      margin: 1em;
+      background-color: navy;
+      color: white;
+      padding: 0.8em;
+      width: 13vw;
+      border: none;
+      cursor: pointer;
+      :hover {
+        background-color: #4cb9e4;
         color: white;
-        padding: 0.8em;
-        width: 13vw;
-        border: none;
-        cursor: pointer;
-        :hover {
-          background-color: #4cb9e4;
-          color: white;
-        }
-  }
+      }
+    }
   }
 `;
 
@@ -228,6 +315,8 @@ export const StyledRegister = styled.div`
         border: 1px solid lightgray;
       }
       button {
+        border-radius: 0.5em;
+
         background-color: navy;
         color: white;
         padding: 0.8em;
