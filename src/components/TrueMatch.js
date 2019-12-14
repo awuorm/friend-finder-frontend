@@ -24,6 +24,11 @@ export const TrueMatch = props => {
     };
     props.postMatch(matchedToTrue);
   };
+
+  const messageMatch = (match, e) => {
+    e.preventDefault();
+    props.history.push("/messages");
+  }
   return (
     <StyledMatches>
       <h5>Start the conversation</h5>
@@ -41,7 +46,6 @@ export const TrueMatch = props => {
                 <NavLink
                   style={{
                     textDecoration: "none",
-                    // backgroundColor: "#4cb9e4",
                     padding: "0.5em",
                     color: "white"
                   }}

@@ -14,7 +14,7 @@ import LandingPage from "./components/LandingPage";
 import Matches from "./components/Matches";
 import  Dash  from "./components/Dash";
 import  TrueMatch  from "./components/TrueMatch";
-import { Messages } from "./components/Messages";
+import  Messages  from "./components/Messages";
 
 export function App(props) {
   console.log(props);

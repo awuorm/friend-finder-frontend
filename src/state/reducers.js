@@ -1,9 +1,41 @@
 import * as types from "./actionTypes";
 
+const initialPostMessage = {
+  sentMsg: {},
+  sentMsgError: {}
+};
+
+export const postMessagesReducer = (state = initialPostMessage, action) => {
+switch(action.type) {
+  case types.POST_MESSAGES: 
+  return {...state, sentMsg: action.payload};
+  case types.POST_MESSAGES_ERROR: 
+  return {...state, sentMsgError: action.payload};
+  default:
+    return state;
+}
+};
+
+const initialMessages = {
+    msgs: [],
+    msgsError: {}
+};
+
+export const getMessagesReducer = (state = initialMessages, action) => {
+  switch(action.type) {
+    case types.GET_MESSAGES: 
+    return {...state, msgs: action.payload};
+    case types.GET_MESSAGES_ERROR: 
+    return {...state, msgsError: action.payload};
+    default:
+      return state;
+  }
+};
+
 const matchedTrue = {
   trueMatch: [],
   trueMatchError: {}
-}
+};
 
 export const trueMatchReducers = (state = matchedTrue, action) => {
   switch (action.type) {

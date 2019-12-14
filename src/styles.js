@@ -114,6 +114,7 @@ export const StyledQuestions = styled.div`
           color: white;
         }
   }
+  }
 `;
 
 export const StyledDash = styled.div`

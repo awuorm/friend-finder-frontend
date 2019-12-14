@@ -16,6 +16,8 @@ const monsterReducer = combineReducers({
   questions: reducers.questionsReducer,
   matched: reducers.matchesReducers,
   matchedTrue: reducers.trueMatchReducers,
+  sentMessages: reducers.postMessagesReducer,
+  userMessages: reducers.getMessagesReducer
 });
 
 const store = createStore(
