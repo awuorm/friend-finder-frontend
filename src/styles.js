@@ -23,28 +23,30 @@ export const StyledMatches = styled.div`
     padding: 0.5em;
     border: 1px solid lightgray;
     margin-bottom: 0.8em;
-    button {
+    div {
+    background-color: aliceblue;
+    width: 40vw;
+    border: none;
+    margin:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+      button {
        margin: 1em;
-       margin-left: 20vw;
+       margin-left: 5vw;
         background-color: #4cb9e4;
         color: white;
-        padding: 0.2em;
-        width: 11.5vw;
+        width: 7vw;
+        height: 5vh;
         border: none;
         cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        img {
-          width: 2vw;
-          height: 3vw;
-          padding-right: 0.5em;
-        }
         :hover {
           background-color: navy;
           color: white;
         }
   }
+    }
+    
   }
 `;
 

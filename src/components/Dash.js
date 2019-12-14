@@ -33,9 +33,9 @@ export const Dash = props => {
         </NavLink>
         <NavLink
           style={{ textDecoration: "none", fontWeight: "bold", padding: "1em"}}
-          to="/dash/user-profile"
+          to="/dash/messages"
         >
-          Profile
+          Messages
         </NavLink>
       </div>
     </StyledDash>

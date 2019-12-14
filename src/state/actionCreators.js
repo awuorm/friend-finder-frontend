@@ -3,6 +3,63 @@ import axios from "axios";
 import { store } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import Axios from "axios";
+
+export const getMessagesError = error => {
+  return {type: types.GET_MESSAGES_ERROR, payload: error.message};
+}
+
+export const getMessages = () => dispatch => {
+  axiosWithAuth()
+  .get("http://localhost:4000/api/restricted/msgs")
+  .then(res => {
+    dispatch({type: types.GET_MESSAGES, payload: res.data});
+    console.log(res.data);
+  })
+  .catch(error => {
+    dispatch(getMessagesError(error));
+    store.addNotification({
+      title: "Something went terribly wrong",
+      message: error.message,
+      type: "danger", // 'default', 'success', 'info', 'warning'
+      container: "top-right", // where to position the notifications
+      animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+      animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+      dismiss: {
+        duration: 3000
+      }
+    });
+    console.log("error from matches", error);
+  });
+}
+
+export const postMessagesError = error => {
+  return {type: types.POST_MESSAGES_ERROR, payload: error.message};
+}
+
+export const postMessages = (msg) => dispatch => {
+  axiosWithAuth()
+  .post("http://localhost:4000/api/restricted/msgs", msg)
+  .then(res => {
+    dispatch({type: types.POST_MESSAGES, payload: res.data});
+    console.log(res.data);
+  })
+  .catch(error => {
+    dispatch(postMessagesError(error));
+    store.addNotification({
+      title: "Something went terribly wrong",
+      message: error.message,
+      type: "danger", // 'default', 'success', 'info', 'warning'
+      container: "top-right", // where to position the notifications
+      animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+      animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+      dismiss: {
+        duration: 3000
+      }
+    });
+    console.log("error from matches", error);
+  });
+};
 
 export const trueMatchesErrror = error => {
   return { type: types.GET_TRUE_MATCH_ERROR, payload: error.message };
@@ -14,17 +71,6 @@ export const getTrueMatches = () => dispatch => {
     .then(res => {
       dispatch({ type: types.GET_TRUE_MATCH, payload: res.data });
       console.log(res.data);
-      // store.addNotification({
-      //   title: "Find your matches!",
-      //   message: "just  a moment",
-      //   type: "success", // 'default', 'success', 'info', 'warning'
-      //   container: "top-right", // where to position the notifications
-      //   animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
-      //   animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
-      //   dismiss: {
-      //     duration: 3000
-      //   }
-      // });
     })
     .catch(error => {
       dispatch(matchesError(error));

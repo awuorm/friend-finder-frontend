@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../state/actionCreators";
-import { StyledMatches,StyledButtons } from "../styles";
+import { StyledMatches, StyledButtons } from "../styles";
 import cancel_icon_2 from "../imgs/cancel_icon_2.png";
 import { NavLink } from "react-router-dom";
 
@@ -35,23 +35,22 @@ export const TrueMatch = props => {
             <h6>
               Match probability: {Math.round((match.probability / 12) * 100)}
             </h6>
-            <StyledButtons>
-            <button onClick={e => submitMatch(match, e)}>
-              <img alt="tick icon" src={cancel_icon_2} />
-              <p>unmatch</p>
-            </button>
-            <NavLink
-              style={{
-                textDecoration: "none",
-                backgroundColor: "#4cb9e4",
-                padding: "0.5em",
-                color: "white"
-              }}
-              to="/dash/messages"
-            >
-              Message
-            </NavLink>
-            </StyledButtons>
+            <div>
+              <button onClick={e => submitMatch(match, e)}>unmatch</button>
+              <button>
+                <NavLink
+                  style={{
+                    textDecoration: "none",
+                    // backgroundColor: "#4cb9e4",
+                    padding: "0.5em",
+                    color: "white"
+                  }}
+                  to="/dash/messages"
+                >
+                  Message
+                </NavLink>
+              </button>
+            </div>
           </div>
         );
       })}
