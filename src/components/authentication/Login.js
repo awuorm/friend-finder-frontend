@@ -115,7 +115,7 @@ export const Login = props => {
       </div>
       <p>
         <span>or <br/></span>
-        <NavLink to="/login">Sign in</NavLink>
+        <NavLink to="/register">Register</NavLink>
       </p>
     </StyledRegister>
   );
